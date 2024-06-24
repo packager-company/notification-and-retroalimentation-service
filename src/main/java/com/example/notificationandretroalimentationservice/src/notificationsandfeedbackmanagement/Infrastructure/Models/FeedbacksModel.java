@@ -22,7 +22,7 @@ public class FeedbacksModel {
     @Column(nullable = false, unique = true)
     public String shipment_uuid;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     public String user_uuid;
 
     @Column(nullable = false)
