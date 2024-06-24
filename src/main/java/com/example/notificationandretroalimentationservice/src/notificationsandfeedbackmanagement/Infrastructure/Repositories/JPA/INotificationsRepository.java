@@ -1,0 +1,7 @@
+package com.example.notificationandretroalimentationservice.src.notificationsandfeedbackmanagement.Infrastructure.Repositories.JPA;
+
+import com.example.notificationandretroalimentationservice.src.notificationsandfeedbackmanagement.Infrastructure.Models.NotificationsModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface INotificationsRepository extends JpaRepository<NotificationsModel, Long> {
+}
