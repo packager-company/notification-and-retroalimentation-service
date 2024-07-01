@@ -1,9 +1,12 @@
-FROM maven:3.8.5-openjdk-17
+FROM maven:3.8.1-openjdk-17 AS build
 WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline
+
 COPY src ./src
-RUN mvn clean install 
-ARG SERVER_PORT=9191
-EXPOSE ${SERVER_PORT}
-CMD ["java", "-jar", "target/membershipservice-0.0.1-SNAPSHOT.jar", "--server.port=${SERVER_PORT}"]
+RUN mvn clean install
+
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/your-artifact.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
